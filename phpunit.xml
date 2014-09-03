@@ -1,0 +1,2 @@
+<phpunit colors="true" autoload="vendor/autoload.php">
+</phpunit>

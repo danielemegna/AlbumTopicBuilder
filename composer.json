@@ -1,0 +1,16 @@
+{
+    "name": "root/daniele.topic-creator",
+    "description": "A topic creator for album download in forums",
+    "require-dev": {
+        "phpunit/phpunit": ">=4"
+    },
+    "authors": [
+        {
+            "name": "Daniele Megna",
+            "email": "daniele.megna@nyxsolutions.it"
+        }
+    ],
+    "autoload": {
+      "classmap": ["src"]
+    }
+}
