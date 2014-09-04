@@ -28,30 +28,30 @@ class TopicBuilder
 
   private function addImageIfSetted()
   {
-    $this->addFieldIfSetted("img-url", "[img]", "[/img]".self::EOLSTRING);
+    $this->addFieldIfSetted("[img]", "img-url", "[/img]".self::EOLSTRING);
   }
 
   private function addSettedOnelineInfos()
   {
-    $this->addFieldIfSetted("album-title", "[b]Titolo[/b]: ");
-    $this->addFieldIfSetted("artist", "[b]Artista[/b]: ");
-    $this->addFieldIfSetted("year", "[b]Anno[/b]: ");
-    $this->addFieldIfSetted("label", "[b]Etichetta[/b]: ");
-    $this->addFieldIfSetted("quality", "[b]Qualità[/b]: ");
-    $this->addFieldIfSetted("relase-date", "[b]Data rilascio[/b]: ");
+    $this->addFieldIfSetted("[b]Titolo[/b]: ", "album-title");
+    $this->addFieldIfSetted("[b]Artista[/b]: ", "artist");
+    $this->addFieldIfSetted("[b]Anno[/b]: ", "year");
+    $this->addFieldIfSetted("[b]Etichetta[/b]: ", "label");
+    $this->addFieldIfSetted("[b]Qualità[/b]: ", "quality");
+    $this->addFieldIfSetted("[b]Data rilascio[/b]: ", "relase-date");
     $this->addNewLine(); 
   }
 
   private function addDescriptionIfSetted()
   {
     $this->addFieldIfSetted(
-      "description",
       "[b]Descrizione[/b]:".self::EOLSTRING.self::EOLSTRING,
+      "description",
       self::EOLSTRING
     );
   }
 
-  private function addFieldIfSetted($elementlabel, $prefix, $suffix = "")
+  private function addFieldIfSetted($prefix, $elementlabel, $suffix = "")
   {
     if($this->issetAndNotEmpty($this->fields, $elementlabel)) {
       $this->addTextToTopic($prefix.$this->fields[$elementlabel].$suffix);
