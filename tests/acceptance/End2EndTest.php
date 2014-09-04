@@ -34,8 +34,9 @@ class End2EndTest extends PHPUnit_Framework_TestCase
         "My N***a (Feat. Jeezy & Rich Homie Quan)",
         "Do It To Ya (Feat. TeeFLii)",
       ],
-      "download-link" => "https://mega.co.nz/#!SpoFBaLC!v-GOjp2ZCJMj6qCGwyrGyN-z0H0L8I6WtdOSnT0P948",
-      "password"      => "shady90@downloadhunter"
+      "download-links" => [
+        ["Download", "https://mega.co.nz/#!SpoFBaLC!v-GOjp2ZCJMj6qCGwyrGyN-z0H0L8I6WtdOSnT0P948", "shady90@downloadhunter"]
+      ]
     ]);
 
     $generated = $tb->generateTopic();
@@ -79,7 +80,9 @@ Password: shady90@downloadhunter[/spoiler]",
       "year" => "2014",
       "label" => "Universal Music",
       "quality" => "m4a - iTunes",
-      "download-link" => "http://adf.ly/rir0R",
+      "download-links" => [
+        ["Download", "http://adf.ly/rir0R"]
+      ]
     ]);
 
     $generated = $tb ->generateTopic();
@@ -98,35 +101,62 @@ Password: shady90@downloadhunter[/spoiler]",
 
   function testMultiDownloadLink()
   {
-    // TODO ...
-    return;
-
     $tb = new TopicBuilder([ 
-      "img-url"     => "",
-      "album-title" => "",
-      "artist"      => "",
-      "year"        => "",
+      "img-url"     => "http://i58.tinypic.com/2u9qwp0.jpg",
+      "album-title" => "Rock Steady",
+      "artist"      => "Ensi",
+      "year"        => "2014",
       "relase-date" => "",
-      "label"       => "",
-      "quality"     => "",
+      "label"       => "Atlantic Records",
+      "quality"     => "320kbps - mp3 ",
       "description"  => "",
       "tracklist"   => [
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "Rispetto di tutti paura di nessuno",
+        "Change feat. Patrick Benifei",
+        "Eroi feat. Julia Lenti",
+        "Rocky e Adriana",
+        "L'alternativa (interludio)",
+        "Rocksteady",
+        "Juggernaut",
+        "Stratocaster feat. Noyz Narcos e Salmo",
+        "V.I.P. feat. Y'akoto",
+        "Se non con te feat. Andrea D'Alessio",
+        "Non è un addio"
       ],
-      "download-link" => "",
-      "password"      => ""
+      "download-links" => [
+        ["Download", "http://adf.ly/rbowv"],
+        ["Link alternativo", "http://adf.ly/rc8z4"]
+      ]
     ]);
 
     $generated = $tb->generateTopic();
     $this->assertEquals(
-      "",
+      "[img]http://i58.tinypic.com/2u9qwp0.jpg[/img]
+
+[b]Titolo[/b]: Rock Steady
+[b]Artista[/b]: Ensi
+[b]Anno[/b]: 2014
+[b]Etichetta[/b]: Atlantic Records
+[b]Qualità[/b]: 320kbps - mp3 
+
+[b]Tracklist[/b]:
+
+1. Rispetto di tutti paura di nessuno
+2. Change feat. Patrick Benifei
+3. Eroi feat. Julia Lenti
+4. Rocky e Adriana
+5. L'alternativa (interludio)
+6. Rocksteady
+7. Juggernaut
+8. Stratocaster feat. Noyz Narcos e Salmo
+9. V.I.P. feat. Y'akoto
+10. Se non con te feat. Andrea D'Alessio
+11. Non è un addio
+
+[b]Download[/b]:
+[spoiler]Link: [url]http://adf.ly/rbowv[/url][/spoiler]
+[b]Link alternativo[/b]:
+[spoiler]Link: [url]http://adf.ly/rc8z4[/url][/spoiler]",
       $generated
     );
   }

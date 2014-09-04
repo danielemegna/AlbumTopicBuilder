@@ -19,15 +19,12 @@ class TopicBuilder
     $this->addSettedOnelineInfos();
     $this->addTracklist();
     $this->addDescriptionIfSetted();
-    $this->addSpoilerElements(
-    [
-      "download-link" => ["Link: [url]", "[/url]"],
-      "password" => ["Password: "]
-    ],
-    "[b]Download[/b]:");
+    $this->addDownloadLinks();
+    $this->removeLastNewLineIfEmpty();
 
     return $this->topic;
   }
+
 
   private function addImageIfSetted()
   {
@@ -67,10 +64,6 @@ class TopicBuilder
     $this->addTextToTopic(self::EOLSTRING);
   }
 
-  private function addTextToTopic($text)
-  {
-    $this->topic .= $text;
-  }
 
   private function addTracklist($elementlabel = "tracklist", $prefix = "[b]Tracklist[/b]:")
   {
@@ -88,30 +81,44 @@ class TopicBuilder
     }
   }
 
-  private function addSpoilerElements($elements, $spoilerprefix)
+  private function addDownloadLinks()
   {
-    $this->addTextToTopic("$spoilerprefix");
-    $this->addNewLine();
-    $this->addTextToTopic("[spoiler]");
-    
-    $sep = "";
-    foreach($elements as $label => $xfix) {
-      $prefix = count($xfix) > 0 ? $xfix[0] : "";
-      $suffix = count($xfix) > 1 ? $xfix[1] : "";
-      if($this->issetAndNotEmpty($this->fields, $label)) {
-        $this->addTextToTopic($sep);
-        $this->addTextToTopic(
-          $prefix.
-          $this->fields[$label].
-          $suffix
-        );
-        $sep = self::EOLSTRING;
+    foreach($this->fields["download-links"] as $link)
+    {
+      $label = $link[0];
+      $url = $link[1];
+      $password = count($link) > 2 ? $link[2] : null;
+      
+      $this->addTextToTopic("[b]".$label."[/b]:");
+      $this->addNewLine();
+      
+      $this->addTextToTopic("[spoiler]");
+      $this->addTextToTopic("Link: [url]".$url."[/url]");
+      
+      if($password != null) {
+        $this->addNewLine();
+        $this->addTextToTopic("Password: $password");
       }
-    }
 
-    $this->addTextToTopic("[/spoiler]"); 
+      $this->addTextToTopic("[/spoiler]"); 
+      $this->addNewLine();
+    }
   }
 
+  private function addTextToTopic($text)
+  {
+    $this->topic .= $text;
+  }
+
+  private function removeLastNewLineIfEmpty()
+  {
+    $topic_len  = strlen($this->topic);
+    $eol_len    = strlen(self::EOLSTRING);
+    
+    if(substr($this->topic, -($eol_len)) === self::EOLSTRING)
+      $this->topic = substr($this->topic, 0, $topic_len-$eol_len);
+  }
+  
   private function issetAndNotEmpty($array, $label)
   {
     return isset($array[$label]) && $array[$label] != null && $array[$label] != '';
