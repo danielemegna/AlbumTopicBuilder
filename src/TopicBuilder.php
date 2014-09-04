@@ -56,32 +56,32 @@ class TopicBuilder
 
   private function addFieldIfSetted($elementlabel, $prefix, $suffix = "")
   {
-    if(isset($this->fields[$elementlabel])) {
-      $this->addToTopic($prefix.$this->fields[$elementlabel].$suffix);
+    if($this->issetAndNotEmpty($this->fields, $elementlabel)) {
+      $this->addTextToTopic($prefix.$this->fields[$elementlabel].$suffix);
       $this->addNewLine(); 
     }
   }
   
   private function addNewLine()
   {
-    $this->addToTopic(self::EOLSTRING);
+    $this->addTextToTopic(self::EOLSTRING);
   }
 
-  private function addToTopic($text)
+  private function addTextToTopic($text)
   {
     $this->topic .= $text;
   }
 
   private function addTracklist($elementlabel = "tracklist", $prefix = "[b]Tracklist[/b]:")
   {
-    if(isset($this->fields[$elementlabel])) {
-      $this->addToTopic($prefix);
+    if($this->issetAndNotEmpty($this->fields, $elementlabel)) {
+      $this->addTextToTopic($prefix);
       $this->addNewLine(); 
 
       $n = 1;
       foreach($this->fields[$elementlabel] as $track) {
         $this->addNewLine(); 
-        $this->addToTopic($n++.". ".$track);
+        $this->addTextToTopic($n++.". ".$track);
       }
       $this->addNewLine(); 
       $this->addNewLine(); 
@@ -90,17 +90,17 @@ class TopicBuilder
 
   private function addSpoilerElements($elements, $spoilerprefix)
   {
-    $this->addToTopic("$spoilerprefix");
+    $this->addTextToTopic("$spoilerprefix");
     $this->addNewLine();
-    $this->addToTopic("[spoiler]");
+    $this->addTextToTopic("[spoiler]");
     
     $sep = "";
     foreach($elements as $label => $xfix) {
       $prefix = count($xfix) > 0 ? $xfix[0] : "";
       $suffix = count($xfix) > 1 ? $xfix[1] : "";
-      if(isset($this->fields[$label])) {
-        $this->addToTopic($sep);
-        $this->addToTopic(
+      if($this->issetAndNotEmpty($this->fields, $label)) {
+        $this->addTextToTopic($sep);
+        $this->addTextToTopic(
           $prefix.
           $this->fields[$label].
           $suffix
@@ -109,7 +109,11 @@ class TopicBuilder
       }
     }
 
-    $this->addToTopic("[/spoiler]"); 
+    $this->addTextToTopic("[/spoiler]"); 
   }
 
+  private function issetAndNotEmpty($array, $label)
+  {
+    return isset($array[$label]) && $array[$label] != null && $array[$label] != '';
+  }
 }

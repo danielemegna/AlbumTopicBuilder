@@ -95,4 +95,39 @@ Password: shady90@downloadhunter[/spoiler]",
       $generated
     );
   }
+
+  function testMultiDownloadLink()
+  {
+    // TODO ...
+    return;
+
+    $tb = new TopicBuilder([ 
+      "img-url"     => "",
+      "album-title" => "",
+      "artist"      => "",
+      "year"        => "",
+      "relase-date" => "",
+      "label"       => "",
+      "quality"     => "",
+      "description"  => "",
+      "tracklist"   => [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+      ],
+      "download-link" => "",
+      "password"      => ""
+    ]);
+
+    $generated = $tb->generateTopic();
+    $this->assertEquals(
+      "",
+      $generated
+    );
+  }
 }
