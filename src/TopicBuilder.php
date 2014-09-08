@@ -28,17 +28,17 @@ class TopicBuilder
 
   private function addImageIfSetted()
   {
-    $this->addFieldIfSetted("[img]", "img-url", "[/img]".self::EOLSTRING);
+    $this->addFieldIfSetted("[img]", "img_url", "[/img]".self::EOLSTRING);
   }
 
   private function addSettedOnelineInfos()
   {
-    $this->addFieldIfSetted("[b]Titolo[/b]: ", "album-title");
+    $this->addFieldIfSetted("[b]Titolo[/b]: ", "album_title");
     $this->addFieldIfSetted("[b]Artista[/b]: ", "artist");
     $this->addFieldIfSetted("[b]Anno[/b]: ", "year");
     $this->addFieldIfSetted("[b]Etichetta[/b]: ", "label");
     $this->addFieldIfSetted("[b]Qualità[/b]: ", "quality");
-    $this->addFieldIfSetted("[b]Data rilascio[/b]: ", "relase-date");
+    $this->addFieldIfSetted("[b]Data rilascio[/b]: ", "release_date");
     $this->addNewLine(); 
   }
 
@@ -83,7 +83,7 @@ class TopicBuilder
 
   private function addDownloadLinks()
   {
-    foreach($this->fields["download-links"] as $link)
+    foreach($this->fields["download_links"] as $link)
     {
       $label = $link[0];
       $url = $link[1];

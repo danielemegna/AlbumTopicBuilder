@@ -16,11 +16,11 @@ class End2EndTest extends PHPUnit_Framework_TestCase
   function testTopicBuilderCanBuildACompleteAlbumDownloadPage()
   {
     $tb = new TopicBuilder([ 
-      "img-url"     => "http://i58.tinypic.com/2qi5i5g.jpg",
-      "album-title" => "My Krazy Life [Deluxe Version]",
+      "img_url"     => "http://i58.tinypic.com/2qi5i5g.jpg",
+      "album_title" => "My Krazy Life [Deluxe Version]",
       "artist"      => "YG",
       "year"        => "2014",
-      "relase-date" => "18 Marzo 2014",
+      "release_date" => "18 Marzo 2014",
       "label"       => "Pu\$haz Ink, CTE World, Def Jam Recordings",
       "quality"     => "mp3 320 kbps",
       "description"  => "My Krazy Life is the debut studio album by American rapper YG. The album was released on March 18, 2014, by Pu\$haz Ink, CTE World and Def Jam Recordings. Its recording process took place from 2012 to 2014 in various recording studios, mostly in Atlanta, Georgia and Los Angeles, California.",
@@ -34,7 +34,7 @@ class End2EndTest extends PHPUnit_Framework_TestCase
         "My N***a (Feat. Jeezy & Rich Homie Quan)",
         "Do It To Ya (Feat. TeeFLii)",
       ],
-      "download-links" => [
+      "download_links" => [
         ["Download", "https://mega.co.nz/#!SpoFBaLC!v-GOjp2ZCJMj6qCGwyrGyN-z0H0L8I6WtdOSnT0P948", "shady90@downloadhunter"]
       ]
     ]);
@@ -75,12 +75,12 @@ Password: shady90@downloadhunter[/spoiler]",
   function testTopicBuilderCanBuildATinyAlbumTopic()
   {
     $tb = new TopicBuilder([
-      "album-title" => "Sayonara",
+      "album_title" => "Sayonara",
       "artist" => "Club Dogo",
       "year" => "2014",
       "label" => "Universal Music",
       "quality" => "m4a - iTunes",
-      "download-links" => [
+      "download_links" => [
         ["Download", "http://adf.ly/rir0R"]
       ]
     ]);
@@ -102,11 +102,11 @@ Password: shady90@downloadhunter[/spoiler]",
   function testMultiDownloadLink()
   {
     $tb = new TopicBuilder([ 
-      "img-url"     => "http://i58.tinypic.com/2u9qwp0.jpg",
-      "album-title" => "Rock Steady",
+      "img_url"     => "http://i58.tinypic.com/2u9qwp0.jpg",
+      "album_title" => "Rock Steady",
       "artist"      => "Ensi",
       "year"        => "2014",
-      "relase-date" => "",
+      "release_date" => "",
       "label"       => "Atlantic Records",
       "quality"     => "320kbps - mp3 ",
       "description"  => "",
@@ -123,7 +123,7 @@ Password: shady90@downloadhunter[/spoiler]",
         "Se non con te feat. Andrea D'Alessio",
         "Non è un addio"
       ],
-      "download-links" => [
+      "download_links" => [
         ["Download", "http://adf.ly/rbowv"],
         ["Link alternativo", "http://adf.ly/rc8z4"]
       ]

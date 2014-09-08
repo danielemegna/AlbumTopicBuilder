@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <title>Shady 90 - Downloadhunter Topic Builder</title>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+      $(document).ready(function() {
+
+        $('input#btnGenerate').click(function() {
+        
+          
+
+          $.post( "gateway.php", {
+            img_url: $('#img_url').val(),
+            album_title: $('#album_title').val(), 
+            artist: $('#artist').val(),
+            year: $('#year').val(),
+            release_date: $('#release_date').val(),
+            label: $('#label').val(),
+            quality: $('#quality').val(),
+            description: $('#description').val(),
+            tracklist: $('#tracklist').val().split("\n"),
+            download_links: [
+              ["Download",$('#download_link').val(),$('#password').val()]
+            ]
+          }, function(data) {
+            console.debug(data);
+          });
+
+        });
+      });
+    </script>
+
+    <style type="text/css">
+      body { position:relative; }
+      #topic-form { width:800px; border:1px solid red; position:absolute; left:50%; top:150px; margin-left:-400px; }
+      #topic-form input, #topic-form textarea { width:100%; }
+    </style>
+  </head>
+  <body>
+    <table id="topic-form">
+      <tr>
+        <td style="width:160px">Image url:</td>
+        <td><input type="text" id="img_url" /></td>
+      </tr>
+      <tr>
+        <td>Album title:</td>
+        <td><input type="text" id="album_title" /></td>
+      </tr>
+      <tr>
+        <td>Year:</td>
+        <td><input type="text" id="year" /></td>
+      </tr>
+      <tr>
+        <td>Relase date:</td>
+        <td><input type="text" id="release_date"></td>
+      </tr>
+      <tr>
+        <td>Qualit&agrave;:</td>
+        <td><input type="text" id="quality"></td>
+      </tr>
+      <tr>
+        <td>Descrizione:</td>
+        <td><input type="text" id="description"></td>
+      </tr>
+      <tr>
+        <td>Tracklist:</td>
+        <td><textarea rows="24" id="tracklist"></textarea></td>
+      </tr>
+      <tr>
+        <td>Download link:</td>
+        <td><input type="text" id="download_link"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type="text" id="password"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input id="btnGenerate" type="button" style="float:right;width:100px" value="Generate" /></td>
+      </tr>
+    </table>
+  </body>
+</html>
