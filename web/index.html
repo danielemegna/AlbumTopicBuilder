@@ -1,14 +1,22 @@
 <html>
   <head>
     <title>Shady 90 - Downloadhunter Topic Builder</title>
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/ZeroClipboard.min.js"></script>
     <script>
       $(document).ready(function() {
 
-        $('input#btnGenerate').click(function() {
+        var client = new ZeroClipboard($('input#btnGenerate'), {moviePath:"js/ZeroClipboard.swf", debug: false});
         
-          
+        client.on( "load", function(client) {
+          alert( "movie is loaded" );
 
+          client.on("complete", function(client, args) {
+            alert("Copied text to clipboard");
+          });
+        });
+      
+        /*$('input#btnGenerate').click(function() {
           $.post( "gateway.php", {
             img_url: $('#img_url').val(),
             album_title: $('#album_title').val(), 
@@ -26,17 +34,50 @@
             console.debug(data);
           });
 
-        });
+        });*/
       });
     </script>
 
     <style type="text/css">
-      body { position:relative; }
-      #topic-form { width:800px; border:1px solid red; position:absolute; left:50%; top:150px; margin-left:-400px; }
+      body {
+        position:relative;
+        background:url(img/bg.jpg) top left repeat;
+      }
+      
+      #topic-form {
+        background-color: #343434;
+        width:800px;
+        position:absolute;
+        left:50%;
+        top:130px;
+        margin-left:-400px;
+        font-family:"Lucida Grande", Helvetica, Arial, sans-serif;
+        font-size:12px;
+        color:#F0E80D;
+        font-weight:bold;
+        border:solid 1px #131313;
+        border-collapse:separate;
+        border-spacing:0px;
+      }
+      
+      #topic-form td {
+        border-left: solid 1px #404040;
+        border-right: solid 1px #121212;
+        border-top: solid 1px #3C3C3C;
+        border-bottom: solid 1px #131313;
+        padding: 4px;
+        background: #313131 url(img/bg.jpg) top left repeat-x;
+      }
+      
       #topic-form input, #topic-form textarea { width:100%; }
     </style>
   </head>
   <body>
+    <div style="background:url(img/logo_bg.gif) top left repeat-x">
+      <div style="background:url(img/logo_left.jpg) top left no-repeat;">
+        <div id="logo-right" style="background:url(img/logo_right.jpg) top right repeat-y;"><center><img src="http://oi42.tinypic.com/eqnx5g.jpg" ></center></div>
+      </div>
+    </div>
     <table id="topic-form">
       <tr>
         <td style="width:160px">Image url:</td>
