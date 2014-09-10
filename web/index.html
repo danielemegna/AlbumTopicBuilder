@@ -6,15 +6,22 @@
     <script>
       $(document).ready(function() {
 
-        var client = new ZeroClipboard($('input#btnGenerate'), {moviePath:"js/ZeroClipboard.swf", debug: false});
-        
-        client.on( "load", function(client) {
-          alert( "movie is loaded" );
+        var client = new ZeroClipboard( $("#click-to-copy"), {
+              moviePath: "http://www.paulund.co.uk/playground/demo/zeroclipboard-demo/zeroclipboard/ZeroClipboard.swf",
+              debug: false
+            } );
 
-          client.on("complete", function(client, args) {
-            alert("Copied text to clipboard");
-          });
-        });
+            client.on( "load", function(client)
+            {
+                //$('#flash-loaded').fadeIn();
+
+                client.on( "complete", function(client, args) {
+                    client.setText( "Set text copied." );
+                    //$('#click-to-copy-text').fadeIn();
+                } );
+            } );
+
+
       
         /*$('input#btnGenerate').click(function() {
           $.post( "gateway.php", {
@@ -117,7 +124,8 @@
       </tr>
       <tr>
         <td></td>
-        <td><input id="btnGenerate" type="button" style="float:right;width:100px" value="Generate" /></td>
+        <td><button id="btnGenerate" style="float:right;width:100px">Generate</button>
+        <button id="click-to-copy">Click To Copy</button></td>
       </tr>
     </table>
   </body>
