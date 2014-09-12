@@ -6,24 +6,12 @@
     <script>
       $(document).ready(function() {
 
-        var client = new ZeroClipboard( $("#click-to-copy"), {
-              moviePath: "http://www.paulund.co.uk/playground/demo/zeroclipboard-demo/zeroclipboard/ZeroClipboard.swf",
-              debug: false
-            } );
-
-            client.on( "load", function(client)
-            {
-                //$('#flash-loaded').fadeIn();
-
-                client.on( "complete", function(client, args) {
-                    client.setText( "Set text copied." );
-                    //$('#click-to-copy-text').fadeIn();
-                } );
-            } );
-
-
-      
-        /*$('input#btnGenerate').click(function() {
+        var client = new ZeroClipboard( $("#btnGenerate"), {
+          moviePath: "http://www.paulund.co.uk/playground/demo/zeroclipboard-demo/zeroclipboard/ZeroClipboard.swf",
+          debug: false
+        } );
+            
+        $('table#topic-form input, table#topic-form textarea').change(function() {
           $.post( "gateway.php", {
             img_url: $('#img_url').val(),
             album_title: $('#album_title').val(), 
@@ -38,10 +26,10 @@
               ["Download",$('#download_link').val(),$('#password').val()]
             ]
           }, function(data) {
-            console.debug(data);
+            $('#hidGenerated').attr("value", data);
           });
 
-        });*/
+        });
       });
     </script>
 
@@ -87,7 +75,7 @@
     </div>
     <table id="topic-form">
       <tr>
-        <td style="width:160px">Image url:</td>
+        <td style="width:170px">Image url:</td>
         <td><input type="text" id="img_url" /></td>
       </tr>
       <tr>
@@ -111,7 +99,7 @@
         <td><input type="text" id="description"></td>
       </tr>
       <tr>
-        <td>Tracklist:</td>
+        <td>Tracklist:<br/>(senza numeri! solo titoli!)</td>
         <td><textarea rows="24" id="tracklist"></textarea></td>
       </tr>
       <tr>
@@ -123,9 +111,8 @@
         <td><input type="text" id="password"></td>
       </tr>
       <tr>
-        <td></td>
-        <td><button id="btnGenerate" style="float:right;width:100px">Generate</button>
-        <button id="click-to-copy">Click To Copy</button></td>
+        <td><input type="hidden" id="hidGenerated" value="Retry.." /></td>
+        <td><button id="btnGenerate" data-clipboard-target="hidGenerated" style="float:right;width:100px">Generate</button>
       </tr>
     </table>
   </body>
