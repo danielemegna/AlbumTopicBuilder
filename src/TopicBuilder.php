@@ -121,6 +121,6 @@ class TopicBuilder
   
   private function issetAndNotEmpty($array, $label)
   {
-    return isset($array[$label]) && $array[$label] != null && $array[$label] != '';
+    return isset($array[$label]) && $array[$label] != null && $array[$label] != '' && $array[$label] != "\n" && $array[$label] != self::EOLSTRING;
   }
 }

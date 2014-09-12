@@ -160,4 +160,32 @@ Password: shady90@downloadhunter[/spoiler]",
       $generated
     );
   }
+
+  function testTracklistEmptyArrayIsLikeNull()
+  {
+    $tb = new TopicBuilder([
+      "album_title" => "Sayonara",
+      "artist" => "Club Dogo",
+      "year" => "2014",
+      "label" => "Universal Music",
+      "quality" => "m4a - iTunes",
+      "tracklist" => [],
+      "download_links" => [
+        ["Download", "http://adf.ly/rir0R"]
+      ]
+    ]);
+
+    $generated = $tb ->generateTopic();
+    $this->assertEquals(
+      "[b]Titolo[/b]: Sayonara
+[b]Artista[/b]: Club Dogo
+[b]Anno[/b]: 2014
+[b]Etichetta[/b]: Universal Music
+[b]Qualità[/b]: m4a - iTunes
+
+[b]Download[/b]:
+[spoiler]Link: [url]http://adf.ly/rir0R[/url][/spoiler]",
+      $generated
+    );
+  }
 }
